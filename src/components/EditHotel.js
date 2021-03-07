@@ -23,7 +23,6 @@ const EditHotel = ({hotel})=>{
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)
         })
-        console.log(res)
         alert("HOTEL UPDATED SUCCSS");
        } catch (err) {
            console.error(err.message)
