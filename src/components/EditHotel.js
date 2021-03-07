@@ -18,7 +18,7 @@ const EditHotel = ({hotel})=>{
       e.preventDefault();
        try {
         const body = {singleroomprice,doubleroomprice,tripleroomprice,startdate,expiredate,board,notes};
-        const res = await fetch(`http://localhost:5000/update/${hotel.id}`, {
+        const res = await fetch(`https://pacific-sea-54425.herokuapp.com/update/${hotel.id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(body)
