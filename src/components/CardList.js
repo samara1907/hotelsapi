@@ -13,7 +13,7 @@ const CardList = ()=>{
 	const [search, setsearch] = useState("");
 	const getHotels = async ()=>{
 		try{
-			const res = await fetch("https://guarded-inlet-00828.herokuapp.com/add");
+			const res = await fetch("https://pacific-sea-54425.herokuapp.com/add");
 			const hotelsData = await res.json();
 			
 			sethotels(hotelsData);
@@ -25,7 +25,7 @@ const CardList = ()=>{
 
 	const deletehotel = async (id)=>{
 		try{
-			 await fetch(`https://guarded-inlet-00828.herokuapp.com/delete/${id}`,{
+			 await fetch(`https://pacific-sea-54425.herokuapp.com/delete/${id}`,{
 				method: "DELETE"
 			});
 			alert("hotel deleted from the list!!")

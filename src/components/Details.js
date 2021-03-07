@@ -9,7 +9,7 @@ const Details = React.forwardRef(({hotel},ref)=>{
 
 	const getHotels = async ()=>{
 		try{
-			const res = await fetch("https://guarded-inlet-00828.herokuapp.com/add");
+			const res = await fetch("https://pacific-sea-54425.herokuapp.com/add");
 			const hotelsData = await res.json();
 			
 			sethotels(hotelsData);

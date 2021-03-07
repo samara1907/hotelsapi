@@ -25,7 +25,7 @@ const HotelForm = ()=>{
     e.preventDefault();
     try{
       const body = {rating,name,email,phone,city,singleroomprice,doubleroomprice,tripleroomprice,website,startdate,expiredate,board,notes};
-      await fetch("http://localhost:5000/add", 
+      await fetch("https://pacific-sea-54425.herokuapp.com/add", 
       {
         method: "POST",
         headers: {"Content-Type": "application/json"},
@@ -103,7 +103,7 @@ const HotelForm = ()=>{
 				<div className="col-25">
 					<label  htmlFor="url">website</label></div>
 			<div className="col-75">
-				<input type="url" value={"https://" + website} onChange={e=> setwebsite(e.target.value)} /></div>
+				<input type="url" value={website} onChange={e=> setwebsite(e.target.value)} /></div>
 			</div >
 			<div className="row">
 				<div className="col-25">
