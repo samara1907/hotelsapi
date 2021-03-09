@@ -12,9 +12,9 @@ const Details = ({hotel})=>{
 		  <Popover.Title  as="h3">Details</Popover.Title>
 		  <Popover.Content>
 						<p key={hotel.id}>
-							<strong>Email: </strong><a href = "mailto: {hotel.email}">{hotel.email}</a>
+							<strong>Email: </strong><a href ={`mailto:${hotel.email}`}>{hotel.email}</a>
 							<br/>
-							<strong>Phone: </strong><a href="tel:{hotel.phone}">{hotel.phone}</a>
+							<strong>Phone: </strong><a href={`tel:${hotel.phone}`}>{hotel.phone}</a>
 							<br/>
 							<strong>Website: </strong><a href={hotel.website}>{hotel.website}</a>
 							<br/>
