@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import 'tachyons';
 import {Popover,OverlayTrigger} from "react-bootstrap";
 import { AiOutlineMessage } from "react-icons/ai";
@@ -6,7 +6,6 @@ import { AiOutlineMessage } from "react-icons/ai";
 
 
 const Details = ({hotel})=>{
-	const [hotels, sethotels] = useState([]);
   
 	const popover = (
 		<Popover id={`id${hotel.id}`}>
@@ -25,22 +24,7 @@ const Details = ({hotel})=>{
 		</Popover>
 	  );
 	  
-	const getHotels = async ()=>{
-		try{
-			const res = await fetch("https://pacific-sea-54425.herokuapp.com/add");
-			const hotelsData = await res.json();
-			
-			sethotels(hotelsData);
-
-		}catch(err){
-			console.error(err.message);
-		}
-	}
-
-	useEffect(()=>{
-		getHotels();
-	}, [hotels]);
-
+	
   
 	return(
 		<OverlayTrigger trigger="click" placement="top" overlay={popover}>
