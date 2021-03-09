@@ -1,12 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import 'tachyons';
-import {Modal, Button} from "react-bootstrap";
+import {Popover,OverlayTrigger} from "react-bootstrap";
+import { AiOutlineMessage } from "react-icons/ai";
 
-const Details = React.forwardRef(({hotel},ref)=>{
+
+
+const Details = ({hotel})=>{
 	const [hotels, sethotels] = useState([]);
-  const [lgShow, setLgShow] = useState(false);
   
-
+	const popover = (
+		<Popover id={`id${hotel.id}`}>
+		  <Popover.Title  as="h3">Details</Popover.Title>
+		  <Popover.Content>
+						<p key={hotel.id}>
+							<strong>Email: </strong><a href = "mailto: {hotel.email}">{hotel.email}</a>
+							<br/>
+							<strong>Phone: </strong><a href="tel:{hotel.phone}">{hotel.phone}</a>
+							<br/>
+							<strong>Website: </strong><a href={hotel.website}>{hotel.website}</a>
+							<br/>
+							<span className="notes"><strong>Notes: </strong>{hotel.notes}</span>
+						</p>
+		  </Popover.Content>
+		</Popover>
+	  );
+	  
 	const getHotels = async ()=>{
 		try{
 			const res = await fetch("https://pacific-sea-54425.herokuapp.com/add");
@@ -25,46 +43,13 @@ const Details = React.forwardRef(({hotel},ref)=>{
 
   
 	return(
-		<div ref={ref} style={{display: "contents"}}>
-      <Button onClick={() => setLgShow(true)}>Details</Button>
-<Modal
-        size="lg"
-        show={lgShow}
-        onHide={() => setLgShow(false)}
-        aria-labelledby="example-modal-sizes-title-lg"
-      >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            More Deteils
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body id={`id${hotel.id}`}>
-				<table>
-					<thead>
-						<tr>
-					<th>Email</th>
-					<th>Phone</th>
-					<th>Website</th>
-					<th>Notes</th>
-					</tr>
-					</thead>
-					{hotels.map(hotel=>(
-					<tbody key={hotel.id}>
-						<tr>
-						<td><a href = "mailto: {hotel.email}">{hotel.email}</a></td>
-						<td><a href="tel:{hotel.phone}">{hotel.phone}</a></td>
-						<td><a href={hotel.website}>{hotel.website}</a></td>
-						<td className="notes">{hotel.notes}</td>
-					</tr>
-					</tbody>
-						))}
-				</table></Modal.Body>
-      </Modal>
-      </div>
-		);
+		<OverlayTrigger trigger="click" placement="top" overlay={popover}>
+    <AiOutlineMessage variant="success" data-target={`#id${hotel.id}`}/>
+  </OverlayTrigger>
+	  );
 		
 		
-})
+}
 
 export default Details;
 

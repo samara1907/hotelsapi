@@ -1,12 +1,11 @@
 import React, {useEffect, useState} from 'react';
 import 'tachyons';
 import './Card.css';
-import {Button} from "react-bootstrap";
 import moment from 'moment';
 import EditHotel from "./EditHotel";
 import Details from "./Details";
 import CurrencyFormat from 'react-currency-format';
-
+import { AiOutlineDelete } from "react-icons/ai";
 
 const CardList = ()=>{
 	const [hotels, sethotels] = useState([]);
@@ -85,13 +84,13 @@ const CardList = ()=>{
 						<td><CurrencyFormat value={hotel.doubleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
 						<td><CurrencyFormat value={hotel.tripleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
 						<td>{hotel.board}</td>
-						<td>{moment(hotel.startdate).format("YYYY-MM-DD")}</td>
-						<td>{moment(hotel.expiredate).format("YYYY-MM-DD")}</td>
+						<td>{moment(hotel.startdate).format("DD-MM")}</td>
+						<td>{moment(hotel.expiredate).format("DD-MM")}</td>
 						<td>Free</td>
 						<td>50%</td>
 						<td><Details hotel={hotel}/></td>
 						<td><EditHotel hotel={hotel}/></td>
-						<td><Button onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}>Delete</Button></td>
+						<td><AiOutlineDelete onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}/></td>
 					</tr>
 					</tbody>
 						))}

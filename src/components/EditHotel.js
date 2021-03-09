@@ -1,6 +1,8 @@
 import React,{useState} from "react";
 import {Modal, Button} from "react-bootstrap";
 import moment from 'moment';
+import { AiOutlineRedo } from "react-icons/ai";
+
 
 const EditHotel = ({hotel})=>{
     const [show, setShow] = useState(false);
@@ -32,9 +34,7 @@ const EditHotel = ({hotel})=>{
     
   return (
     <>
-      <Button variant="primary" onClick={handleShow} data-target={`#id${hotel.id}`}>
-        Update
-      </Button>
+      <AiOutlineRedo variant="primary" onClick={handleShow} data-target={`#id${hotel.id}`}/>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Edit Hotel</Modal.Title>
@@ -47,9 +47,9 @@ const EditHotel = ({hotel})=>{
 					<label  htmlFor="tripleroomprice">Triple Room Price</label>
 				    <input type="text" min="1" step="any" value={tripleroomprice} onChange={e=> settripleroomprice(e.target.value)} />
 					<label  htmlFor="startdate">From</label>
-				    <input type="date" value={moment(startdate).format("YYYY-MM-DD")} onChange={e=> setstartdate(e.target.value)} />
+				    <input type="date" value={moment(startdate).format("YY-MM-DD")} onChange={e=> setstartdate(e.target.value)} />
 					<label  htmlFor="expiredate">To</label>
-				    <input type="date" value={moment(expiredate).format("YYYY-MM-DD")} onChange={e=> setexpiredate(e.target.value)} />
+				    <input type="date" value={moment(expiredate).format("YY-MM-DD")} onChange={e=> setexpiredate(e.target.value)} />
           <label  htmlFor="text">Board</label>
             <input type="text"  onChange={e=> setboard(e.target.value)} defaultValue={board}/>
 					<label  htmlFor="notes">Notes</label>
