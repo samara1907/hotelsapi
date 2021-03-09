@@ -76,7 +76,7 @@ const CardList = ()=>{
 						return("");
 						}).map(hotel=>(
 					<tbody key={hotel.id}>
-						<tr>
+						<tr className="tr1">
 						<td>{hotel.rating}<span className="fa fa-star checked"></span></td>
 						<td>{hotel.name}</td>
 						<td>{hotel.city}</td>
