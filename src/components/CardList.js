@@ -84,8 +84,8 @@ const CardList = ()=>{
 						<td><CurrencyFormat value={hotel.doubleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
 						<td><CurrencyFormat value={hotel.tripleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
 						<td>{hotel.board}</td>
-						<td>{moment(hotel.startdate).format("DD-MM")}</td>
-						<td>{moment(hotel.expiredate).format("DD-MM")}</td>
+						<td>{moment(hotel.startdate).format("YY-MM-DD")}</td>
+						<td>{moment(hotel.expiredate).format("YY-MM-DD")}</td>
 						<td>Free</td>
 						<td>50%</td>
 						<td><Details hotel={hotel}/></td>

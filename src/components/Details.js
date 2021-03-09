@@ -39,7 +39,7 @@ const Details = ({hotel})=>{
 
 	useEffect(()=>{
 		getHotels();
-	}, []);
+	}, [hotels]);
 
   
 	return(
