@@ -2,16 +2,30 @@ import React from 'react';
 import './App.css';
 import HotelForm from './components/Hotel';
 import CardList from './components/CardList';
-
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route
+} from "react-router-dom";
+import NavBar from './components/NavBar';
 
 const App =()=>{
   return (
-    <div className="App">
+    <>
+    <NavBar/>
+    <Router>
+    <Switch>
+      <Route path="/AddHotel">
       <div className="add"><HotelForm /></div>
-      <div className="container">
+      </Route>
+      <Route path="/hotelList">
+      <div>
         <CardList className="item"/>
       </div>
-    </div>
+      </Route>
+      </Switch>
+    </Router>
+    </>
   );
 	}
 

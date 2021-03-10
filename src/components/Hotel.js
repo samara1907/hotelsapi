@@ -3,8 +3,8 @@ import './Hotel.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'tachyons';
 import CurrencyFormat from 'react-currency-format';
-import {Button, Modal} from 'react-bootstrap';
-import {AiOutlinePlus} from "react-icons/ai";
+import {Form, Col, Button,Container,Row} from 'react-bootstrap';
+
 
 const HotelForm = ()=>{
   const [rating,setrating] = useState("");
@@ -20,10 +20,6 @@ const HotelForm = ()=>{
   const [expiredate,setexpiredate] = useState("");
   const [board,setboard] = useState("");
   const [notes, setnotes] = useState("");
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
 
   const handelSubmit = async e =>{
     e.preventDefault();
@@ -44,56 +40,93 @@ const HotelForm = ()=>{
   }
   return(
 	<>
-      <Button variant="success" onClick={handleShow}>
-        <AiOutlinePlus/>ADD NEW HOTEL
-      </Button>
 
-      <Modal
-        show={show}
-        onHide={handleClose}
-        backdrop="static"
-        keyboard={false}
-      >
-        <Modal.Header closeButton>
-          <Modal.Title>ADD NEW HOTEL</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <div className="container">
-		<form onSubmit={handelSubmit} >
-					<label  htmlFor="number">Rating</label>
-						<input type="number" value={rating} onChange={e=> setrating(e.target.value)} required/>
-				<label  htmlFor="text">Name</label>
-				<input type="text" value={name} onChange={e=> setname(e.target.value)} required/>
-					<label  htmlFor="text">Email</label>
-				<input type="email" value={email} onChange={e=> setemail(e.target.value)}/>	
-					<label  htmlFor="text">Phone</label>
-			<CurrencyFormat format="+90 (###) ###-## ##" mask="_" value={phone} onChange={e=> setphone(e.target.value)}/>
-					<label  htmlFor="text">City</label>
-				<input type="text" value={city} onChange={e=> setcity(e.target.value)} required/>
-					<label  htmlFor="text">Single Room Price</label>
-			<CurrencyFormat thousandSeparator={true} prefix={'€'} value={singleroomprice} onChange={e=> setsingleroomprice(e.target.value)}/>
-					<label  htmlFor="text">Dobule Room Price</label>
-			<CurrencyFormat thousandSeparator={true} prefix={'€'} value={doubleroomprice} onChange={e=> setdoubleroomprice(e.target.value)} />
-					<label  htmlFor="text">Triple Room Price</label>
-			<CurrencyFormat thousandSeparator={true} prefix={'€'} value={tripleroomprice} onChange={e=> settripleroomprice(e.target.value)} />
-					<label  htmlFor="url">website</label>
-				<input type="url" value={website} onChange={e=> setwebsite(e.target.value)} />
-					<label  htmlFor="date">From</label>
-				<input type="date" value={startdate} onChange={e=> setstartdate(e.target.value)} />
-					<label  htmlFor="text">To</label>
-				<input type="date" value={expiredate} onChange={e=> setexpiredate(e.target.value)} />
-					<label  htmlFor="text">Board</label>
-				<input type="text"  onChange={e=> setboard(e.target.value)} defaultValue={board}/>
-					<label  htmlFor="subject">Notes</label>
-				<input type="text" id="subject" name="subject" placeholder="Write something.." style={{height:"200px"}} value={notes} onChange={e=> setnotes(e.target.value)}/>
-			<hr/>
-			<div>
-			<input className="form-control btn btn-success" type="submit" value="Add Hotel"/>
-			</div>
- 		</form>
- 		</div>
-        </Modal.Body>
-      </Modal>
+	<Container>
+		<Row>
+			<Col> 
+				<h1>ADD NEW HOTEL</h1>
+			</Col>
+		</Row>
+           <Row>
+			   <Col>
+			   <Form  onSubmit={handelSubmit}>
+			<Form.Row>
+				<Form.Group as={Col} >
+				<Form.Label>Hotel Rating</Form.Label>
+				<Form.Control size="lg" type="number" value={rating} onChange={e=> setrating(e.target.value)} placeholder="Rate" />
+				</Form.Group>
+				<Form.Group as={Col} >
+				<Form.Label>Name</Form.Label>
+				<Form.Control size="lg" type="text" value={name} onChange={e=> setname(e.target.value)} placeholder="Enter Hotel Name" />
+				</Form.Group>
+				</Form.Row>
+				<Form.Row>
+				<Form.Group  as={Col} >
+					<Form.Label>Email</Form.Label>
+					<Form.Control size="lg" type="email" value={email} onChange={e=> setemail(e.target.value)}></Form.Control>
+				</Form.Group>
+				<Form.Group  as={Col}>
+					<Form.Label>Phone</Form.Label>
+					<CurrencyFormat format="+90 (###) ###-## ##" mask="_" value={phone} onChange={e=> setphone(e.target.value)}/>
+				</Form.Group>
+				</Form.Row>
+				<Form.Row>
+				<Form.Group  as={Col} >
+					<Form.Label>City</Form.Label>
+					<Form.Control size="lg" type="text" value={city} onChange={e=> setcity(e.target.value)} required></Form.Control>
+				</Form.Group>
+				</Form.Row>
+				<Form.Row>
+					<Form.Group as={Col} >	
+					<Form.Label>Singe Room Price</Form.Label>
+					<CurrencyFormat thousandSeparator={true} prefix={'€'} value={singleroomprice} onChange={e=> setsingleroomprice(e.target.value)}/>
+					</Form.Group>
+					<Form.Group as={Col} >	
+					<Form.Label>Double Room Price</Form.Label>
+					<CurrencyFormat thousandSeparator={true} prefix={'€'} value={doubleroomprice} onChange={e=> setdoubleroomprice(e.target.value)} />
+					</Form.Group>
+					<Form.Group as={Col} >	
+					<Form.Label>Triple Room Price</Form.Label>
+					<CurrencyFormat thousandSeparator={true} prefix={'€'} value={tripleroomprice} onChange={e=> settripleroomprice(e.target.value)} />
+					</Form.Group>
+				</Form.Row>
+				<h4>season</h4>
+				<Form.Row>		
+					<Form.Group as={Col} controlId="formGridStartdate">
+						<Form.Label>Start</Form.Label>
+						<Form.Control type="date" value={startdate} onChange={e=> setstartdate(e.target.value)}></Form.Control>
+					</Form.Group>
+					<Form.Group as={Col} controlId="formGridExpirdate">
+						<Form.Label>End</Form.Label>
+					<Form.Control type="date" value={expiredate} onChange={e=> setexpiredate(e.target.value)}></Form.Control>
+				</Form.Group>
+					</Form.Row>
+					<Form.Row>
+						<Form.Group as={Col}>
+							<Form.Label>WebSite</Form.Label>
+							<Form.Control type="url" value={website} onChange={e=> setwebsite(e.target.value)} placeholder="https://"></Form.Control>
+						</Form.Group>
+					</Form.Row>
+					<Form.Row>
+						<Form.Group as={Col} >
+							<Form.Label>Board</Form.Label>
+							<Form.Control type="text"  onChange={e=> setboard(e.target.value)} defaultValue={board}></Form.Control>
+						</Form.Group>
+					</Form.Row>
+					<Form.Row>
+						<Form.Group as={Col} >
+							<Form.Label>Notes</Form.Label>
+							<Form.Control type="text" id="subject" name="subject" placeholder="Write something.." style={{height:"200px"}} value={notes} onChange={e=> setnotes(e.target.value)}></Form.Control>
+						</Form.Group>
+					</Form.Row>
+					<Button variant="primary" type="submit">
+    Add Hotel
+  </Button>
+	</Form>
+			   </Col>
+		   </Row>
+		
+	</Container>
     </>
 
 		);
