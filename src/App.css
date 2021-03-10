@@ -1,5 +1,5 @@
-
-.add{
-  margin: 50px;
-  margin-left: 45%;
-}
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }

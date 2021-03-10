@@ -20,7 +20,10 @@ const HotelForm = ()=>{
   const [expiredate,setexpiredate] = useState("");
   const [board,setboard] = useState("");
   const [notes, setnotes] = useState("");
-  const [modalShow, setModalShow] = useState(false);
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   const handelSubmit = async e =>{
     e.preventDefault();
@@ -39,110 +42,50 @@ const HotelForm = ()=>{
     }
 	window.location.reload(true);
   }
-  function MyVerticallyCenteredModal(props) {
-    return (
+  return(
+	<>
+      <Button variant="success" onClick={handleShow}>
+        <AiOutlinePlus/>ADD NEW HOTEL
+      </Button>
+
       <Modal
-        {...props}
-        size="lg"
-        aria-labelledby="contained-modal-title-vcenter"
-        centered
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={false}
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">
-            ADD NEW HOTEL
-          </Modal.Title>
+          <Modal.Title>ADD NEW HOTEL</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div className="container">
-			<div className="row">
-				<div className="col-25"><h2>ADD NEW HOTEL</h2></div>
-			</div>
 		<form onSubmit={handelSubmit} >
-			<div className="row">
-				<div className="col-25">
 					<label  htmlFor="number">Rating</label>
-					</div>
-					<div className="col-75">
 						<input type="number" value={rating} onChange={e=> setrating(e.target.value)} required/>
-					</div>
-			</div>
-			<div  className="row">
-				<div className="col-25"><label  htmlFor="text">Name</label></div>
-			<div className="col-75">
-				<input type="text" value={name} onChange={e=> setname(e.target.value)} required/></div>			
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">Email</label></div>
-			<div className="col-75">
-				<input type="email" value={email} onChange={e=> setemail(e.target.value)}/></div>	
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">Phone</label></div>
-			<div className="col-75">
+				<label  htmlFor="text">Name</label>
+				<input type="text" value={name} onChange={e=> setname(e.target.value)} required/>
+					<label  htmlFor="text">Email</label>
+				<input type="email" value={email} onChange={e=> setemail(e.target.value)}/>	
+					<label  htmlFor="text">Phone</label>
 			<CurrencyFormat format="+90 (###) ###-## ##" mask="_" value={phone} onChange={e=> setphone(e.target.value)}/>
-				</div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">City</label></div>
-			<div className="col-75">
-				<input type="text" value={city} onChange={e=> setcity(e.target.value)} required/></div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">Single Room Price</label></div>
-			<div className="col-75">
+					<label  htmlFor="text">City</label>
+				<input type="text" value={city} onChange={e=> setcity(e.target.value)} required/>
+					<label  htmlFor="text">Single Room Price</label>
 			<CurrencyFormat thousandSeparator={true} prefix={'€'} value={singleroomprice} onChange={e=> setsingleroomprice(e.target.value)}/>
-			</div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">Dobule Room Price</label></div>
-			<div className="col-75">
+					<label  htmlFor="text">Dobule Room Price</label>
 			<CurrencyFormat thousandSeparator={true} prefix={'€'} value={doubleroomprice} onChange={e=> setdoubleroomprice(e.target.value)} />
-			</div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">Triple Room Price</label></div>
-			<div className="col-75">
+					<label  htmlFor="text">Triple Room Price</label>
 			<CurrencyFormat thousandSeparator={true} prefix={'€'} value={tripleroomprice} onChange={e=> settripleroomprice(e.target.value)} />
-			</div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="url">website</label></div>
-			<div className="col-75">
-				<input type="url" value={website} onChange={e=> setwebsite(e.target.value)} /></div>
-			</div >
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="date">From</label></div>
-			<div className="col-75">
+					<label  htmlFor="url">website</label>
+				<input type="url" value={website} onChange={e=> setwebsite(e.target.value)} />
+					<label  htmlFor="date">From</label>
 				<input type="date" value={startdate} onChange={e=> setstartdate(e.target.value)} />
-				</div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">To</label></div>
-			<div className="col-75">
-				<input type="date" value={expiredate} onChange={e=> setexpiredate(e.target.value)} /></div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="text">Board</label></div>
-			<div className="col-75">
-				<input type="text"  onChange={e=> setboard(e.target.value)} defaultValue={board}/></div>
-			</div>
-			<div className="row">
-				<div className="col-25">
-					<label  htmlFor="subject">Notes</label></div>
-			<div className="col-75">
+					<label  htmlFor="text">To</label>
+				<input type="date" value={expiredate} onChange={e=> setexpiredate(e.target.value)} />
+					<label  htmlFor="text">Board</label>
+				<input type="text"  onChange={e=> setboard(e.target.value)} defaultValue={board}/>
+					<label  htmlFor="subject">Notes</label>
 				<input type="text" id="subject" name="subject" placeholder="Write something.." style={{height:"200px"}} value={notes} onChange={e=> setnotes(e.target.value)}/>
-			</div>
-			</div>
 			<hr/>
 			<div>
 			<input className="form-control btn btn-success" type="submit" value="Add Hotel"/>
@@ -150,24 +93,8 @@ const HotelForm = ()=>{
  		</form>
  		</div>
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
       </Modal>
-    );
-  }
-  return(
-	<>
-	<Button variant="success" onClick={() => setModalShow(true)}>
-	  <AiOutlinePlus/>ADD NEW HOTEL
-	</Button>
-
-	<MyVerticallyCenteredModal
-	  show={modalShow}
-	  onHide={() => setModalShow(false)}
-	/>
-  </>
-		
+    </>
 
 		);
 	}
