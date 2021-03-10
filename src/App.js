@@ -7,13 +7,9 @@ import CardList from './components/CardList';
 const App =()=>{
   return (
     <div className="App">
+      <div className="add"><HotelForm /></div>
       <div>
-        <HotelForm/>
-      </div>
-      <hr/>
-      <hr/>
-      <div className="container">
-        <CardList className="item"/>
+        <CardList/>
       </div>
     </div>
   );

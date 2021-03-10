@@ -3,8 +3,8 @@ import './Hotel.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'tachyons';
 import CurrencyFormat from 'react-currency-format';
-
-
+import {Button, Modal} from 'react-bootstrap';
+import {AiOutlinePlus} from "react-icons/ai";
 
 const HotelForm = ()=>{
   const [rating,setrating] = useState("");
@@ -20,7 +20,8 @@ const HotelForm = ()=>{
   const [expiredate,setexpiredate] = useState("");
   const [board,setboard] = useState("");
   const [notes, setnotes] = useState("");
-	
+  const [modalShow, setModalShow] = useState(false);
+
   const handelSubmit = async e =>{
     e.preventDefault();
     try{
@@ -38,10 +39,21 @@ const HotelForm = ()=>{
     }
 	window.location.reload(true);
   }
-
-  return(
-	  
-		<div className="container">
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            ADD NEW HOTEL
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
 			<div className="row">
 				<div className="col-25"><h2>ADD NEW HOTEL</h2></div>
 			</div>
@@ -137,6 +149,25 @@ const HotelForm = ()=>{
 			</div>
  		</form>
  		</div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+  return(
+	<>
+	<Button variant="success" onClick={() => setModalShow(true)}>
+	  <AiOutlinePlus/>ADD NEW HOTEL
+	</Button>
+
+	<MyVerticallyCenteredModal
+	  show={modalShow}
+	  onHide={() => setModalShow(false)}
+	/>
+  </>
+		
 
 		);
 	}

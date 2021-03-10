@@ -1,11 +1,5 @@
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .item {
-    flex: 0 32%;
-    height: 100px;
-    margin-bottom: 2%; /* (100-32*3)/2 */
-  }
+
+.add{
+  margin: 50px;
+  margin-left: 45%;
+}
