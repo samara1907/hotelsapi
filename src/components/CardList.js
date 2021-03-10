@@ -88,9 +88,9 @@ const CardList = ()=>{
 						<td>{moment(hotel.expiredate).format("DD-MM")}</td>
 						<td>Free</td>
 						<td>50%</td>
-						<td><Details hotel={hotel}/></td>
-						<td><EditHotel hotel={hotel}/></td>
-						<td><AiOutlineDelete onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}/></td>
+						<td title="See More"><Details  hotel={hotel}/></td>
+						<td title="Edit this hotel"><EditHotel hotel={hotel}/></td>
+						<td title="Delete"><AiOutlineDelete  onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}/></td>
 					</tr>
 					</tbody>
 						))}
