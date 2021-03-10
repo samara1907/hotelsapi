@@ -13,6 +13,7 @@ const EditHotel = ({hotel})=>{
   const [tripleroomprice,settripleroomprice] = useState(hotel.tripleroomprice);
   const [startdate,setstartdate] = useState(hotel.startdate);
   const [expiredate,setexpiredate] = useState(hotel.expiredate);
+  const [website, setwebsite] = useState(hotel.website);
   const [board, setboard] = useState(hotel.board)
   const [notes, setnotes] = useState(hotel.notes);
   
@@ -51,6 +52,8 @@ const EditHotel = ({hotel})=>{
 				    <input type="date" value={startdate} onChange={e=> setstartdate(e.target.value)} />
 					<label  htmlFor="expiredate">To</label>
 				    <input type="date" value={expiredate} onChange={e=> setexpiredate(e.target.value)} />
+            <label  htmlFor="text">Website</label>
+            <input type="text"  onChange={e=> setwebsite(e.target.value)} value={website}/>
           <label  htmlFor="text">Board</label>
             <input type="text"  onChange={e=> setboard(e.target.value)} defaultValue={board}/>
 					<label  htmlFor="notes">Notes</label>
