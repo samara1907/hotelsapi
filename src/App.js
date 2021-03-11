@@ -8,13 +8,16 @@ import {
   Route
 } from "react-router-dom";
 import NavBar from './components/NavBar';
-
+import Home from "./components/Home";
 const App =()=>{
   return (
     <>
     <NavBar/>
     <Router>
     <Switch>
+      <Router path="/">
+        <Home/>
+      </Router>
       <Route path="/AddHotel">
       <div className="add"><HotelForm /></div>
       </Route>
