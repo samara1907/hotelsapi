@@ -43,7 +43,7 @@ const CardList = ()=>{
 
 	return(
 		<>
-		<Container>
+		<Container className="container">
 			<Row>
 				<Col><Form>
 		<Form.Row>

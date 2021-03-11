@@ -15,17 +15,18 @@ const App =()=>{
     <NavBar/>
     <Router>
     <Switch>
-      <Router path="/">
-        <Home/>
-      </Router>
-      <Route path="/AddHotel">
+      
+      <Route path="/addhotel">
       <div className="add"><HotelForm /></div>
       </Route>
-      <Route path="/hotelList">
+      <Route path="/hotels">
       <div>
         <CardList className="item"/>
       </div>
       </Route>
+      <Router path="/">
+        <Home/>
+      </Router>
       </Switch>
     </Router>
     </>
