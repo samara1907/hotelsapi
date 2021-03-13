@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {Table,FormControl,Form,Col,Container,Row} from 'react-bootstrap';
+import {Table,FormControl,Form,Col} from 'react-bootstrap';
 import moment from 'moment';
 import EditHotel from "./EditHotel";
 import Details from "./Details";
@@ -42,23 +42,22 @@ const CardList = ()=>{
 	}, []);
 
 	return(
-		<>
-		<Container className="container">
-			<Row>
-				<Col><Form>
+		<div>
+		<hr/>
+				<Form>
 		<Form.Row>
-			<Form.Group as={Col}>
+			<Form.Group as={Col} controlId="formGridSearch">
       <FormControl type="text" placeholder="Search by city..." value={search} onChange={e=> setsearch(e.target.value)}/>
 	  </Form.Group>
 	  </Form.Row>
-	  </Form></Col>
-			</Row>
-			<Row>
-				<Col>
-				<Table responsive="sm" bordered="true">
+	  </Form>
+	
+		
+			
+				<Table bordered="true">
 					<thead>
 					<tr>
-						<th>Rate</th>
+									<th>Rate</th>
 									<th>Name</th>
 									<th>City</th>
 									<th>Single</th>
@@ -79,7 +78,7 @@ const CardList = ()=>{
 										return("");
 										}).map(hotel=>(
 									<tbody key={hotel.id}>
-										<tr className="tr1">
+										<tr >
 										<td>{hotel.rating}<FontAwesomeIcon icon={faStar} /></td>
 										<td>{hotel.name}</td>
 										<td>{hotel.city}</td>
@@ -98,10 +97,9 @@ const CardList = ()=>{
 									</tbody>
 										))}
 				</Table>
-				</Col>
-			</Row>
-		</Container>
-		</>
+			
+	
+		</div>
 		);
 		
 		
