@@ -8,7 +8,6 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
-
 const CardList = ()=>{
 	const [hotels, sethotels] = useState([]);
 	const [search, setsearch] = useState("");

@@ -1,11 +1,13 @@
-import {Navbar} from 'react-bootstrap';
+import './Nav.css';
 
 const NavBar = ()=>{
+  
     return(
-        <Navbar collapseOnSelect expand="sm" width="100%" bg="dark" variant="dark">
-    <Navbar.Brand href="/addhotel">Add New Hotel</Navbar.Brand>
-    <Navbar.Brand href="/hotels">Hotels List</Navbar.Brand>
-  </Navbar>
+  <div className="topnav" id="myTopnav">
+  <a href="/" className="active">Home</a>
+  <a href="/addhotel">ADD NEW HOTEL</a>
+  <a href="/hotels">HOTELS LIST</a>
+</div>
     )
 
 }
