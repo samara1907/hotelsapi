@@ -1,7 +1,6 @@
 import React from 'react';
 import 'tachyons';
 import {Button,Modal} from "react-bootstrap";
-import { AiOutlineMessage } from "react-icons/ai";
 
 
 
@@ -44,7 +43,7 @@ const Details = ({hotel})=>{
 	  
 		return (
 		  <>
-			<AiOutlineMessage variant="primary" onClick={() => setModalShow(true)}/>
+			<p className="f6 ph2 pv1 mb1 dib light-purple pointer" variant="primary" onClick={() => setModalShow(true)}>Details</p>
 			
 	  
 			<MyVerticallyCenteredModal

@@ -3,7 +3,6 @@ import moment from 'moment';
 import EditHotel from "./EditHotel";
 import Details from "./Details";
 import CurrencyFormat from 'react-currency-format';
-import { AiOutlineDelete } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import 'tachyons';
@@ -107,7 +106,7 @@ const CardList = ()=>{
 							<div className="dtc">
 							 <Details  hotel={hotel}/></div>
 							 <div className="dtc"><EditHotel hotel={hotel}/></div>
-							 <div className="dtc"><AiOutlineDelete  onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}/>
+							 <div ><p className="f6 ph2 pv1 mb1 dib light-purple pointer"  onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}>Delete</p>
 </div>
 						
     </div>

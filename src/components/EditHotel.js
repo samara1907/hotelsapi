@@ -1,7 +1,6 @@
 import { Hidden } from "@material-ui/core";
 import React,{useState} from "react";
 import {Modal, Button} from "react-bootstrap";
-import { AiOutlineRedo } from "react-icons/ai";
 
 
 const EditHotel = ({hotel})=>{
@@ -9,6 +8,7 @@ const EditHotel = ({hotel})=>{
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [singleroomprice,setsingleroomprice] = useState(hotel.singleroomprice);
+  const [name] = useState(hotel.name);
   const [doubleroomprice,setdoubleroomprice] = useState(hotel.doubleroomprice);
   const [tripleroomprice,settripleroomprice] = useState(hotel.tripleroomprice);
   const [startdate,setstartdate] = useState(hotel.startdate);
@@ -20,7 +20,7 @@ const EditHotel = ({hotel})=>{
   const updateHotel = async (e) =>{
       e.preventDefault();
        try {
-        const body = {singleroomprice,doubleroomprice,tripleroomprice,startdate,expiredate,board,notes};
+        const body = {name,singleroomprice,doubleroomprice,tripleroomprice,startdate,expiredate,board,notes};
         const res = await fetch(`https://pacific-sea-54425.herokuapp.com/update/${hotel.id}`, {
             method: "PUT",
             headers: {"Content-Type": "application/json"},
@@ -36,10 +36,10 @@ const EditHotel = ({hotel})=>{
     
   return (
     <>
-      <AiOutlineRedo variant="primary" onClick={handleShow} data-target={`#id${hotel.id}`}/>
+      <p className="f6 ph2 pv1 mb1 dib light-purple pointer" onClick={handleShow} data-target={`#id${hotel.id}`}>Edit</p>
       <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Edit Hotel</Modal.Title>
+          <Modal.Title>Edit- {hotel.name} Hotel</Modal.Title>
         </Modal.Header>
         <Modal.Body id={`id${hotel.id}`}>
 					<label  htmlFor="singleroomprice">Single Room Price</label>

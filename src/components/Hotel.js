@@ -71,7 +71,7 @@ const HotelForm = ()=>{
 				</Form.Row>
 				<Form.Row>
 				<Form.Group  as={Col} >
-					<Form.Label>City</Form.Label>
+					<Form.Label>Address/City</Form.Label>
 					<Form.Control size="lg" type="text" value={city} onChange={e=> setcity(e.target.value)} required></Form.Control>
 				</Form.Group>
 				</Form.Row>
