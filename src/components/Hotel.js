@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import './Hotel.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import 'tachyons';
 import CurrencyFormat from 'react-currency-format';
 import {Form, Col, Button,Container,Row} from 'react-bootstrap';
 

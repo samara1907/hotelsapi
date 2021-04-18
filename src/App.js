@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import 'tachyons';
 import HotelForm from './components/Hotel';
 import CardList from './components/CardList';
 import {
@@ -7,45 +7,20 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-import {Container,Row,Col} from 'react-bootstrap';
 import NavBar from './components/NavBar';
 import Home from "./components/Home";
 const App =()=>{
   return (
-    <div className="App">
-    <Container fluid>
-      <Row>
-        <Col><NavBar/></Col>
-      </Row>
-    </Container>
-    <hr/>
-    <Router>
-    <Switch>
-    
-      <Route path="/addhotel">
-        <Container>
-          <Row>
-            <Col>
-            <div className="add"><HotelForm /></div>
-            </Col>
-          </Row>
-        </Container>
-      </Route>
-      <Route path="/hotels">
-        <Container>
-          <Row>
-            <Col>
-            <CardList />
-            </Col>
-          </Row>
-        </Container>
-      </Route>
-      <Router path="/">
-        <Home/>
-      </Router>
+    <div className='tc' >
+      <Router>
+      <NavBar/>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+        <Route path="/addhotel" component={HotelForm}/>
+        <Route path="/hotels" component={CardList}/>
       </Switch>
-    </Router>
-    </div>
+      </Router>
+   </div>
   );
 	}
 

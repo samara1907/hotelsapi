@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import {Table,FormControl,Form,Col} from 'react-bootstrap';
 import moment from 'moment';
 import EditHotel from "./EditHotel";
 import Details from "./Details";
@@ -7,10 +6,12 @@ import CurrencyFormat from 'react-currency-format';
 import { AiOutlineDelete } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
+import 'tachyons';
+import {Radio, FormControlLabel, RadioGroup, FormLabel, FormControl} from '@material-ui/core';
 
 const CardList = ()=>{
 	const [hotels, sethotels] = useState([]);
-	const [search, setsearch] = useState("");
+
 	const getHotels = async ()=>{
 		try{
 			const res = await fetch("https://pacific-sea-54425.herokuapp.com/add");
@@ -39,64 +40,81 @@ const CardList = ()=>{
 	useEffect(()=>{
 		getHotels();
 	}, []);
-
+	const [value, setValue] = React.useState('istanbul');
+	const handleChange=(event)=>{
+		setValue(event.target.value);
+	}
 	return(
 		<div>
-		<hr/>
-				<Form>
-		<Form.Row>
-			<Form.Group as={Col} controlId="formGridSearch">
-      <FormControl type="text" placeholder="Search by city..." value={search} onChange={e=> setsearch(e.target.value)}/>
-	  </Form.Group>
-	  </Form.Row>
-	  </Form>
-	
+			<div className="tc br4 pa3 ma2  bw2 shadow-5">
+			<FormControl component="fieldset">
+			<FormLabel component="legend">Choose city</FormLabel>
+			<RadioGroup  row aria-label="gender" name="gender1" value={value} onChange={handleChange}>
+				<FormControlLabel value="istanbul" control={<Radio />} label="Istanbul" />
+				<FormControlLabel value="antalya" control={<Radio />} label="Antalya" />
+				<FormControlLabel value="cappadocia" control={<Radio />} label="Cappadocia" />
+				<FormControlLabel value="pamukkale" control={<Radio />} label="pamukkale" />
+				<FormControlLabel value="kusadasi" control={<Radio />} label="Kusadasi" />
+			</RadioGroup>
+			</FormControl>
+			</div>
+				
+	  {hotels.filter((hotel)=>{
+	if (value === ""){
+		return (hotel);
+	}else if (hotel.city.toLowerCase().includes(value.toLocaleLowerCase())){
+		return (hotel);
+	}else if (hotel.city.toLowerCase().includes(value.toLocaleLowerCase())){
+		return (hotel);
+	}else if (hotel.city.toLowerCase().includes(value.toLocaleLowerCase())){
+		return (hotel);
+	}else if (hotel.city.toLowerCase().includes(value.toLocaleLowerCase())){
+		return (hotel);
+	}else if (hotel.city.toLowerCase().includes(value.toLocaleLowerCase())){
+		return (hotel);
+	}
+	return("");
+	}).map(hotel=>(
+	<article key={hotel.id} className="tc bg-light-green dib br3 pa3 ma2  bw2 shadow-5">
+  <div className="pa2 ph3-ns pb3-ns">
+  <div className="tc">
+        <h2 className="f5 mv0">{hotel.rating}<FontAwesomeIcon icon={faStar} /></h2>
+      </div>
+    <div className="dt w-100 mt1">
+      <div className="dtc">
+        <h1 className="f5 f4-ns mv0">{hotel.name}</h1>
+      </div>
+      
+    </div>
+    <p className="f6 lh-copy measure mt2 mid-gray">
+	{hotel.city}</p>
+	<p className="f6 lh-copy measure mt2 mid-gray">
+							Single: <CurrencyFormat value={hotel.singleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/>
+							</p>
+							<p className="f6 lh-copy measure mt2 mid-gray">
+								Double: <CurrencyFormat value={hotel.doubleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></p>
+								<p className="f6 lh-copy measure mt2 mid-gray"> Triple: <CurrencyFormat value={hotel.tripleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></p>
+							
+							<p className="f6 lh-copy measure mt2 mid-gray">{hotel.board}</p>
+							<p className="f6 lh-copy measure mt2 mid-gray">
+
+							Start Date: {moment(hotel.startdate).format("DD-MM-YYYY")}</p>
+							<p className="f6 lh-copy measure mt2 mid-gray">
+								End Date: {moment(hotel.expiredate).format("DD-MM-YYYY")}
+							</p>
+							<hr/>
+							<div className="dt w-100 mt1">
+							<div className="dtc">
+							 <Details  hotel={hotel}/></div>
+							 <div className="dtc"><EditHotel hotel={hotel}/></div>
+							 <div className="dtc"><AiOutlineDelete  onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}/>
+</div>
+						
+    </div>
+  </div>
+</article>
+))}
 		
-			
-				<Table bordered="true">
-					<thead>
-					<tr>
-									<th>Rate</th>
-									<th>Name</th>
-									<th>City</th>
-									<th>Single</th>
-									<th>Double</th>
-									<th>Triple</th>
-									<th>Board</th>
-									<th colSpan="2">Season</th>
-									<th>Child(0:6)</th>
-									<th>Child(6:12)</th>
-					</tr>
-					</thead>
-							{hotels.filter((hotel)=>{
-										if (search === ""){
-											return (hotel);
-										}else if (hotel.city.toLowerCase().includes(search.toLocaleLowerCase())){
-											return (hotel);
-										}
-										return("");
-										}).map(hotel=>(
-									<tbody key={hotel.id}>
-										<tr >
-										<td>{hotel.rating}<FontAwesomeIcon icon={faStar} /></td>
-										<td>{hotel.name}</td>
-										<td>{hotel.city}</td>
-										<td><CurrencyFormat value={hotel.singleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
-										<td><CurrencyFormat value={hotel.doubleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
-										<td><CurrencyFormat value={hotel.tripleroomprice} displayType={'text'} thousandSeparator={true} prefix={'€'}/></td>
-										<td>{hotel.board}</td>
-										<td>{moment(hotel.startdate).format("DD-MM")}</td>
-										<td>{moment(hotel.expiredate).format("DD-MM")}</td>
-										<td>Free</td>
-										<td>50%</td>
-										<td title="See More"><Details  hotel={hotel}/></td>
-										<td title="Edit this hotel"><EditHotel hotel={hotel}/></td>
-										<td title="Delete"><AiOutlineDelete  onClick={()=> { if (window.confirm('Are you sure you wish to delete this hotel from the list?')) deletehotel(hotel.id) }}/></td>
-									</tr>
-									</tbody>
-										))}
-				</Table>
-			
 	
 		</div>
 		);

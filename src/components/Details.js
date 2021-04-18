@@ -1,36 +1,58 @@
 import React from 'react';
 import 'tachyons';
-import {Popover,OverlayTrigger} from "react-bootstrap";
+import {Button,Modal} from "react-bootstrap";
 import { AiOutlineMessage } from "react-icons/ai";
 
 
 
 const Details = ({hotel})=>{
   
-	const popover = (
-		<Popover id={`id${hotel.id}`}>
-		  <Popover.Title  as="h3">Details</Popover.Title>
-		  <Popover.Content>
-						<p key={hotel.id}>
-							<strong>Email: </strong><a href ={`mailto:${hotel.email}`}>{hotel.email}</a>
-							<br/>
-							<strong>Phone: </strong><a href={`tel:${hotel.phone}`}>{hotel.phone}</a>
-							<br/>
-							<strong>Website: </strong><a href={hotel.website}>{hotel.website}</a>
-							<br/>
-							<span className="notes"><strong>Notes: </strong>{hotel.notes}</span>
-						</p>
-		  </Popover.Content>
-		</Popover>
-	  );
+	function MyVerticallyCenteredModal(props) {
+		return (
+		  <Modal
+			{...props}
+			size="lg"
+			aria-labelledby="contained-modal-title-vcenter"
+			centered
+			id={`id${hotel.id}`}
+		  >
+			<Modal.Header closeButton>
+			  <Modal.Title id="contained-modal-title-vcenter">
+			  Details
+			  </Modal.Title>
+			</Modal.Header>
+			<Modal.Body>
+			<p key={hotel.id}>
+								<strong>Email: </strong><a href ={`mailto:${hotel.email}`}>{hotel.email}</a>
+								<br/>
+								<strong>Phone: </strong><a href={`tel:${hotel.phone}`}>{hotel.phone}</a>
+								<br/>
+								<strong>Website: </strong><a href={hotel.website}>{hotel.website}</a>
+								<br/>
+								<span className="notes"><strong>Notes: </strong>{hotel.notes}</span>
+							</p>
+			</Modal.Body>
+			<Modal.Footer>
+			  <Button onClick={props.onHide}>Close</Button>
+			</Modal.Footer>
+		  </Modal>
+		);
+	  }
 	  
-	
-  
-	return(
-		<OverlayTrigger trigger="click" placement="top" overlay={popover}>
-    <AiOutlineMessage variant="success" data-target={`#id${hotel.id}`}/>
-  </OverlayTrigger>
-	  );
+	  
+		const [modalShow, setModalShow] = React.useState(false);
+	  
+		return (
+		  <>
+			<AiOutlineMessage variant="primary" onClick={() => setModalShow(true)}/>
+			
+	  
+			<MyVerticallyCenteredModal
+			  show={modalShow}
+			  onHide={() => setModalShow(false)}
+			/>
+		  </>
+		);
 		
 		
 }
