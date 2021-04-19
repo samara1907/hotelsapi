@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import 'tachyons';
 import {Radio, FormControlLabel, RadioGroup, FormLabel, FormControl} from '@material-ui/core';
-
+import Scroll from './Scroll';
 const CardList = ()=>{
 	const [hotels, sethotels] = useState([]);
 
@@ -22,7 +22,7 @@ const CardList = ()=>{
 			console.error(err.message);
 		}
 	}
-
+	
 	const deletehotel = async (id)=>{
 		try{
 			 await fetch(`https://pacific-sea-54425.herokuapp.com/delete/${id}`,{
@@ -44,6 +44,7 @@ const CardList = ()=>{
 		setValue(event.target.value);
 	}
 	return(
+			<>
 		<div>
 			<div className="tc br4 pa3 ma2  bw2 shadow-5">
 			<FormControl component="fieldset">
@@ -57,7 +58,9 @@ const CardList = ()=>{
 			</RadioGroup>
 			</FormControl>
 			</div>
-				
+				</div>
+				<Scroll>
+					
 	  {hotels.filter((hotel)=>{
 	if (value === ""){
 		return (hotel);
@@ -74,10 +77,11 @@ const CardList = ()=>{
 	}
 	return("");
 	}).map(hotel=>(
+	
 	<article key={hotel.id} className="tc bg-light-green dib br3 pa3 ma2  bw2 shadow-5">
   <div className="pa2 ph3-ns pb3-ns">
   <div className="tc">
-        <h2 className="f5 mv0">{hotel.rating}<FontAwesomeIcon icon={faStar} /></h2>
+        <h2 className="f5 mv0"><strong>{hotel.rating}</strong> <FontAwesomeIcon icon={faStar} /></h2>
       </div>
     <div className="dt w-100 mt1">
       <div className="dtc">
@@ -112,10 +116,12 @@ const CardList = ()=>{
     </div>
   </div>
 </article>
+
 ))}
 		
-	
-		</div>
+	</Scroll>
+		</>
+		
 		);
 		
 		
